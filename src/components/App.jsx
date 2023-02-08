@@ -30,9 +30,7 @@ export function App() {
     );
 
     if (!isSet) {
-      this.setState(prevState => ({
-        contacts: [contact, ...prevState.contacts],
-      }));
+      setContacts(prevState => [contact, ...prevState]);
     } else {
       alert(`${data.name} is already is contact`);
     }
@@ -49,12 +47,6 @@ export function App() {
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   const visibleContact = contacts.filter(item =>
     item.name.toLowerCase().includes(filter.toLowerCase())
